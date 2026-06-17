@@ -1,5 +1,4 @@
 print("Welcome to the Busniess Name Generator App!")
-
 pet_name = input("What is your pet's name? ")
 town_name = input("What is your town's name? ")
 business_type = input("What kind of business do you run? ")
