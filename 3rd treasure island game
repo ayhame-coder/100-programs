@@ -1,0 +1,52 @@
+print("Welcome to Treasure Island!")
+print("Your mission is to find the treasure.")
+
+direction = input("You are at a crossroad. Where do you go? (right or left): ").lower()
+
+if direction == "right":
+    old_house = input("You are now in front of an old house. Do you enter? (yes or no): ").lower()
+
+    if old_house == "yes":
+        box = input("You found 3 boxes: red, blue, and black. Which one do you open? ").lower()
+
+        if box == "black":
+            print("Congrats! You found the treasure!")
+        elif box == "red" or box == "blue":
+            print("Game over! This box was empty.")
+        else:
+            print("Invalid box choice. You lost your chance.")
+
+    elif old_house == "no":
+        print("Wrong! The treasure was inside the house, habibi.")
+    else:
+        print("Invalid entry. Please choose yes or no.")
+
+elif direction == "left":
+    lake = input("You are in front of a lake. Will you swim or wait for a boat? (swim or wait): ").lower()
+
+    if lake == "swim":
+        print("Game over! The crocodile ate you.")
+
+    elif lake == "wait":
+        old_house = input("Great, the boat came! Now you are in front of an old house. Will you enter? (yes or no): ").lower()
+
+        if old_house == "yes":
+            box = input("You found 3 boxes: red, blue, and black. Which one do you open? ").lower()
+
+            if box == "black":
+                print("Congrats! You found the treasure!")
+            elif box == "red" or box == "blue":
+                print("Game over! This box was empty.")
+            else:
+                print("Invalid box choice. You lost your chance.")
+
+        elif old_house == "no":
+            print("Wrong! The treasure was inside the house, habibi.")
+        else:
+            print("Invalid entry. Please choose yes or no.")
+
+    else:
+        print("Invalid entry. Please choose swim or wait.")
+
+else:
+    print("Invalid entry. Please choose right or left.")
