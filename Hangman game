@@ -1,0 +1,105 @@
+import random
+
+words = ['hotel', 'artificial', 'python']
+word = random.choice(words)
+
+hangman_stages = [
+    """
+      +---+
+      |   |
+          |
+          |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+          |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+      |   |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|   |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|\\  |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|\\  |
+     /    |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|\\  |
+     / \\  |
+          |
+    =========
+    """
+]
+
+wrong_guesses = 0
+blank_space = []
+
+for _ in range(len(word)):
+    blank_space.append('-')
+
+while wrong_guesses < len(hangman_stages) - 1:
+    print(hangman_stages[wrong_guesses])
+    print('Word:', ''.join(blank_space))
+
+    if '-' not in blank_space:
+        print('Congrats! You got it')
+        break
+
+    ask = input(f'Guess a letter from one of these words? {words} ').lower()
+
+    if len(ask) != 1 or not ask.isalpha():
+        print('Please enter one letter only')
+        continue
+
+    elif ask in word:
+        print('Correct')
+
+        for letter in range(len(word)):
+            if word[letter] == ask:
+                blank_space[letter] = ask
+
+    else:
+        print('Wrong')
+        wrong_guesses += 1
+
+if wrong_guesses == len(hangman_stages) - 1:
+    print(hangman_stages[wrong_guesses])
+    print(f'Game over! The word was: {word}')
