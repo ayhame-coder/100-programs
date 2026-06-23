@@ -1,0 +1,43 @@
+print('Welcome to crypt and decrypt ')
+letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+           "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+
+def encrypt(message, shift_amount):
+    new_message = []
+    for letter in message:
+        if letter in letters:
+            old = letters.index(letter)
+            new = (old + shift_amount) % 26
+            new_message.append(letters[new])
+        else:
+            new_message.append(letter)
+    print('Encrypted message:', ''.join(new_message))
+
+
+def decrypt(message, shift_amount):
+    original = []
+    for letter in message:
+        if letter in letters:
+            old = letters.index(letter)
+            new = (old - shift_amount) % 26
+            original.append(letters[new])
+        else:
+            original.append(letter)
+    print('original message:', ''.join(original))
+
+
+while True:
+    direction = input('Type (encode) or (decode) or (quit): \n').lower()
+    if direction == 'quit':
+        break
+    text = input('Type your message: \n').lower()
+    shift = int(input('Type the shift number: '))
+
+    if direction == 'encode':
+        encrypt(text, shift)
+    elif direction == 'decode':
+        decrypt(text, shift)
+    else:
+        print('Enter only Encode or Decode! ')
+        continue
