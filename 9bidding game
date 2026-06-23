@@ -1,0 +1,26 @@
+print('Welcome to bid game! ')
+bids = {}
+while True:
+    name = input('What is your name? ')
+    try:
+        bid = int(input('How much do you bid? '))
+        if bid < 0:
+            print('Bid must be positive!')
+            continue
+    except ValueError:
+        print('Please enter a number!')
+        continue
+    bids[name] = bid
+    ask = input('Is there someone else wanna bid? ').lower()
+    if ask == 'yes':
+        print('\n'*100)
+        continue
+    elif ask == 'no':
+        if bids:
+            print(f'The highest bidder is {max(bids, key=bids.get)}')
+        else:
+            print('No bids were placed!')
+        break
+    else:
+        print('Try again! ')
+        continue
