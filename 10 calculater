@@ -1,0 +1,83 @@
+def add(n1, n2):
+    return n1 + n2
+
+
+def sub(n1, n2):
+    return n1 - n2
+
+
+def mult(n1, n2):
+    return n1 * n2
+
+
+def div(n1, n2):
+    if n2 == 0:
+        return "Error: cannot divide by zero"
+    return n1 / n2
+
+
+operations = {
+    "+": add,
+    "-": sub,
+    "*": mult,
+    "/": div,
+}
+
+
+def get_number(message):
+    while True:
+        try:
+            return float(input(message))
+        except ValueError:
+            print("Please enter a valid number.")
+
+
+def get_operation():
+    while True:
+        print("\nAvailable operations:")
+        for symbol in operations:
+            print(symbol)
+
+        operation = input("What would you like to do? ")
+        if operation in operations:
+            return operation
+
+        print("Please choose one of these operations: +, -, *, /")
+
+
+def calculator():
+    print("Welcome to the calculator")
+
+    num1 = get_number("Enter a number: ")
+    should_continue = True
+
+    while should_continue:
+        operation_symbol = get_operation()
+        num2 = get_number("Enter the second number: ")
+
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+        if isinstance(answer, str):
+            choice = input(
+                "Type 'n' to start a new calculation or 'q' to quit: ").lower()
+        else:
+            choice = input(
+                f"Type 'y' to continue calculating with {answer}, "
+                "'n' to start a new calculation, or 'q' to quit: "
+            ).lower()
+
+        if choice == "y" and not isinstance(answer, str):
+            num1 = answer
+        elif choice == "n":
+            print("\n" * 3)
+            calculator()
+            should_continue = False
+        else:
+            should_continue = False
+            print("Goodbye")
+
+
+calculator()
