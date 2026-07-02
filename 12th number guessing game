@@ -1,0 +1,38 @@
+import random
+
+random_number = random.randint(1, 100)
+attempts = 0
+
+print("Welcome to Number Guessing Game!")
+print("I am thinking of a number between 1 - 100.")
+
+difficulty = input("Choose a difficulty, type 'easy' or 'hard': ").lower()
+
+if difficulty == "easy":
+    attempts = 10
+elif difficulty == "hard":
+    attempts = 5
+else:
+    print("Please enter easy or hard only.")
+    quit()
+
+print(f"You have {attempts} attempts.")
+
+while attempts > 0:
+    try:
+        number_guessed = int(input("What number do you guess? "))
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
+
+    if number_guessed == random_number:
+        print("Great job, you guessed the number!")
+        quit()
+    elif number_guessed > random_number:
+        attempts -= 1
+        print(f"Too high. Try again. You have {attempts} attempts left.")
+    else:
+        attempts -= 1
+        print(f"Too low. Try again. You have {attempts} attempts left.")
+
+print(f"You ran out of attempts. The number was {random_number}.")
