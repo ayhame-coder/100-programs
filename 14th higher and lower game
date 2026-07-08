@@ -1,0 +1,135 @@
+import random
+data = [
+    {"name": "Cristiano Ronaldo", "description": "Footballer",
+        "country": "Portugal", "value": 670000000},
+    {"name": "Lionel Messi", "description": "Footballer",
+        "country": "Argentina", "value": 510000000},
+    {"name": "Virat Kohli", "description": "Cricketer",
+        "country": "India", "value": 273000000},
+    {"name": "Neymar Jr", "description": "Footballer",
+        "country": "Brazil", "value": 230000000},
+    {"name": "Kylian Mbappe", "description": "Footballer",
+        "country": "France", "value": 126000000},
+    {"name": "LeBron James", "description": "Basketball Player",
+        "country": "USA", "value": 160000000},
+    {"name": "Stephen Curry", "description": "Basketball Player",
+        "country": "USA", "value": 58000000},
+    {"name": "Kevin Durant", "description": "Basketball Player",
+        "country": "USA", "value": 24000000},
+    {"name": "Taylor Swift", "description": "Singer",
+        "country": "USA", "value": 282000000},
+    {"name": "Selena Gomez", "description": "Singer",
+        "country": "USA", "value": 419000000},
+    {"name": "Ariana Grande", "description": "Singer",
+        "country": "USA", "value": 374000000},
+    {"name": "Justin Bieber", "description": "Singer",
+        "country": "Canada", "value": 294000000},
+    {"name": "Beyonce", "description": "Singer",
+        "country": "USA", "value": 311000000},
+    {"name": "Billie Eilish", "description": "Singer",
+        "country": "USA", "value": 124000000},
+    {"name": "Shakira", "description": "Singer",
+        "country": "Colombia", "value": 92000000},
+    {"name": "Drake", "description": "Rapper",
+        "country": "Canada", "value": 142000000},
+    {"name": "Eminem", "description": "Rapper",
+        "country": "USA", "value": 46000000},
+    {"name": "The Rock", "description": "Actor",
+        "country": "USA", "value": 393000000},
+    {"name": "Tom Cruise", "description": "Actor",
+        "country": "USA", "value": 12000000},
+    {"name": "Will Smith", "description": "Actor",
+        "country": "USA", "value": 70000000},
+    {"name": "Ryan Reynolds", "description": "Actor",
+        "country": "Canada", "value": 53000000},
+    {"name": "Zendaya", "description": "Actress",
+        "country": "USA", "value": 180000000},
+    {"name": "Emma Watson", "description": "Actress",
+        "country": "UK", "value": 73000000},
+    {"name": "Scarlett Johansson", "description": "Actress",
+        "country": "USA", "value": 41000000},
+    {"name": "MrBeast", "description": "YouTuber",
+        "country": "USA", "value": 410000000},
+    {"name": "PewDiePie", "description": "YouTuber",
+        "country": "Sweden", "value": 110000000},
+    {"name": "Mark Rober", "description": "YouTuber",
+        "country": "USA", "value": 69000000},
+    {"name": "Dude Perfect", "description": "YouTube Channel",
+        "country": "USA", "value": 61000000},
+    {"name": "T-Series", "description": "YouTube Channel",
+        "country": "India", "value": 302000000},
+    {"name": "Cocomelon", "description": "YouTube Channel",
+        "country": "USA", "value": 194000000},
+    {"name": "Elon Musk", "description": "Entrepreneur",
+        "country": "USA", "value": 390000000000},
+    {"name": "Jeff Bezos", "description": "Entrepreneur",
+        "country": "USA", "value": 240000000000},
+    {"name": "Mark Zuckerberg", "description": "Entrepreneur",
+        "country": "USA", "value": 250000000000},
+    {"name": "Bill Gates", "description": "Entrepreneur",
+        "country": "USA", "value": 130000000000},
+    {"name": "Warren Buffett", "description": "Investor",
+        "country": "USA", "value": 145000000000},
+    {"name": "Bernard Arnault", "description": "Businessman",
+        "country": "France", "value": 180000000000},
+    {"name": "Apple", "description": "Company Market Value",
+        "country": "USA", "value": 3200000000000},
+    {"name": "Microsoft", "description": "Company Market Value",
+        "country": "USA", "value": 3500000000000},
+    {"name": "NVIDIA", "description": "Company Market Value",
+        "country": "USA", "value": 4200000000000},
+    {"name": "Amazon", "description": "Company Market Value",
+        "country": "USA", "value": 2500000000000},
+    {"name": "Alphabet", "description": "Company Market Value",
+        "country": "USA", "value": 2200000000000},
+    {"name": "Tesla", "description": "Company Market Value",
+        "country": "USA", "value": 1100000000000},
+    {"name": "Netflix", "description": "Company Market Value",
+        "country": "USA", "value": 540000000000},
+    {"name": "Meta", "description": "Company Market Value",
+        "country": "USA", "value": 1800000000000},
+    {"name": "Samsung", "description": "Company",
+        "country": "South Korea", "value": 390000000000},
+    {"name": "Toyota", "description": "Company",
+        "country": "Japan", "value": 310000000000},
+    {"name": "Coca-Cola", "description": "Company",
+        "country": "USA", "value": 320000000000},
+    {"name": "Nike", "description": "Company",
+        "country": "USA", "value": 170000000000},
+    {"name": "Disney", "description": "Company",
+        "country": "USA", "value": 210000000000},
+    {"name": "McDonald's", "description": "Company", "country": "USA", "value": 230000000000}]
+score = 0
+account_a = random.choice(data)
+account_b = random.choice(data)
+if account_a == account_b:
+    account_b = random.choice(data)
+# check who is the winner
+game_on = True
+while game_on:
+    ask = input(
+        f' who has the higher value? ? {account_a['name']} or {account_b['name']} \n').lower().strip()
+    if ask not in ["a", "b"]:
+        print("Please choose only 'a' or 'b'")
+        continue
+    if account_a['value'] > account_b['value']:
+        winner = account_a["name"]
+        winner_account = account_a
+    elif account_a["value"] < account_b["value"]:
+        winner = account_b["name"]
+        winner_account = account_b
+    else:
+        print("Draw")
+        continue
+    if ask == 'a' and account_a["name"] == winner or ask == 'b' and account_b["name"] == winner:
+        print(f'you win the winner is {winner}')
+        score += 1
+        print(f'your score is {score}')
+        account_a = winner_account
+        account_b = random.choice(data)
+        continue
+    else:
+        account_b = winner_account
+        print(f'you lost the winner is {winner}')
+        print(f'your last score is {score}')
+        quit()
