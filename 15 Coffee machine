@@ -1,0 +1,74 @@
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    },
+}
+
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
+}
+
+
+def is_sufficient(order):
+    for item in resources:
+        if MENU[order]["ingredients"].get(item, 0) > resources[item]:
+            print(f'Sorry there is not enough {item}!')
+            return False
+    return True
+
+
+def remove_items(order):
+    for item in resources:
+        new_item = resources[item] - MENU[order]['ingredients'].get(item, 0)
+        resources[item] = new_item
+
+
+while True:
+    order = input(
+        'what you would like to order ? (latte, espresso, cappuccino ?  )').lower()
+    if order in MENU:
+        if not is_sufficient(order):
+            continue
+        print(f"your order {order} cost is {MENU[order]['cost']}$ ")
+        print('Please enter your money! ')
+        quarters = float(input("How many quarters? "))*0.25
+        dimes = float(input("How many dimes? "))*0.1
+        nickles = float(input("How many nickles? "))*0.05
+        pennies = float(input("How many pennies? "))*0.01
+        total = round(quarters + dimes + nickles + pennies, 2)
+        if total < MENU[order]['cost']:
+            print('Sorry the money is not enough! ')
+            continue
+        remove_items(order)
+        if total > MENU[order]['cost']:
+            print(
+                f"This is the change {round(total - MENU[order]['cost'], 2)}$")
+        print('Enjoy your drink')
+    elif order == 'report':
+        print(resources)
+    elif order == 'exit':
+        exit()
+    else:
+        print('Please try again!')
