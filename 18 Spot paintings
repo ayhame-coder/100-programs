@@ -1,0 +1,35 @@
+from turtle import Turtle, Screen
+import random
+
+colors = [
+    (202, 164, 110), (149, 75, 50), (222, 201, 136), (53, 93, 123),
+    (170, 154, 41), (138, 31, 20), (134, 163, 184), (197, 92, 73),
+    (47, 121, 86), (73, 43, 35), (14, 98, 70), (232, 212, 163),
+    (114, 180, 124), (222, 172, 188), (19, 56, 74), (227, 194, 205)
+]
+
+tim = Turtle()
+
+window = Screen()
+window.colormode(255)
+tim.penup()
+x = -130
+y = -130
+
+for _ in range(10):
+    tim.goto(x, y)
+    y += 25
+
+    for _ in range(10):
+        tim.speed('fastest')
+        tim.shape("circle")
+        tim.color(random.choice(colors))
+
+        tim.pendown()
+        tim.pensize(5)
+        tim.dot(15)
+        tim.penup()
+        tim.forward(20)
+
+
+window.exitonclick()
